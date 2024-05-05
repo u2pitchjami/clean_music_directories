@@ -46,6 +46,6 @@ echo "pas cool, il reste des fichiers audios"
 
 fi
 logit "suppression des dossiers vides"
-find "${DOSSIER_MUSIC}" -empty -type f -delete | tee -a "${LOG}"
+find "${DOSSIER_MUSIC}" -empty -type d -print -delete | tee -a "${LOG}"
 echo
 echo "logs disponibles à cette adresse : "${LOG}""
