@@ -1,0 +1,9 @@
+######CONFIGURATION###########################################################
+DATE=$(date +%y%m%d)
+DOSSIER_MUSIC=/path/to/music/base/
+DOSSIER_TEMP=/temp/folder/path/${DATE}_temp_clean_music #will be deleted at the end
+FICHIER_TEMP=/temp/file/path/${DATE}_temp_clean_music.txt #will be deleted at the end
+CORBEILLE=/path/to/trash/folder/
+DOSSIERLOGS=/path/for/logs/
+LOG=/path/to/logs/files/${DATE}clean_music_log.txt
+######CONFIGURATION###########################################################
