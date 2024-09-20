@@ -13,7 +13,7 @@
 #									                                         #
 ############################################################################## 
 
-source /home/pipo/bin/clean_music_directories/.config.cfg
+source ./.config.cfg
 
 if [ ! -d $DOSSIERLOGS ]
     then
