@@ -12,8 +12,8 @@
 #	BUT: Nettoyage des dossiers sans musiques                                #
 #									                                         #
 ############################################################################## 
-
-source ./.config.cfg
+SCRIPT_DIR=$(dirname "$(realpath "$0")")
+source ${SCRIPT_DIR}/.config.cfg
 
 if [ ! -d $DOSSIERLOGS ]
     then
@@ -25,11 +25,11 @@ logit()
 {
     echo "[`date`] - ${*}" >> ${LOG}
 }
-if [ -d ./TEMP ]
+if [ -d ${SCRIPT_DIR}/TEMP ]
 		then
-		rm -r ./TEMP
+		rm -r ${SCRIPT_DIR}/TEMP
 	fi
-mkdir ./TEMP
+mkdir ${SCRIPT_DIR}/TEMP
 
 logit "Dossier TEMP créé"
 
@@ -41,15 +41,15 @@ find ${DOSSIER_MUSIC} -type d -execdir sh -c '
 
  logit "Dossiers transférés dans le dossier temp"
  
-sed 's/^ *//' < "${FICHIER_TEMP}" | xargs -d '\n' mv --backup=numbered -t ./TEMP
+sed 's/^ *//' < "${FICHIER_TEMP}" | xargs -d '\n' mv --backup=numbered -t ${SCRIPT_DIR}/TEMP
 
 logit "Vérification des dossiers transférés :"
-NB=$(find ./TEMP -type f \( -iname "*.mp3" -o -iname "*.mp4" -o -iname "*.flac" -o -iname "*.wav" -o -iname "*.ogg" -o -iname "*.aac" -o -iname "*.wma" -o -iname "*.aiff" -o -iname "*.m4a" \) -print | wc -l)
+NB=$(find ${SCRIPT_DIR}/TEMP -type f \( -iname "*.mp3" -o -iname "*.mp4" -o -iname "*.flac" -o -iname "*.wav" -o -iname "*.ogg" -o -iname "*.aac" -o -iname "*.wma" -o -iname "*.aiff" -o -iname "*.m4a" \) -print | wc -l)
 
     if [ $NB=0 ]
         then
         logit "Aucun fichier audio, c'est top mec"
-        mv ./TEMP ${CORBEILLE}
+        mv ${SCRIPT_DIR}/TEMP ${CORBEILLE}
         mv ${FICHIER_TEMP} ${CORBEILLE}
     logit "Dossiers placés dans la corbeille pour 7 jours"
     echo "cool, c'est fini"
